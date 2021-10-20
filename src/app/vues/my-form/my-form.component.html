@@ -1,0 +1,36 @@
+<form [formGroup]="fg" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+        <label class="form-label">Firstname</label>
+        <input type="text" class="form-control" formControlName="firstname" [ngClass]="{ 'is-invalid': submitted && fc.firstname.errors }">
+        <div *ngIf="submitted && fc.firstname.errors" class="invalid-feedback">
+            <div *ngIf="fc.firstname.errors.required">Firstname is required</div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Lastname</label>
+        <input type="text" class="form-control" formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && fc.lastname.errors }">
+        <div *ngIf="submitted && fc.firstname.errors" class="invalid-feedback">
+            <div *ngIf="fc.lastname.errors.required">Lastname is required</div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Email address</label>
+        <input type="email" class="form-control" formControlName="mail" [ngClass]="{ 'is-invalid': submitted && fc.mail.errors }">
+        <div *ngIf="submitted && fc.mail.errors" class="invalid-feedback">
+            <div *ngIf="fc.mail.errors.required">Email is required</div>
+            <div *ngIf="fc.mail.errors.email">Email must be a valid email address</div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary mr-1" type="submit">Send</button>
+        <button class="btn btn-danger" type="reset" (click)="onReset()">Reset</button>
+    </div>
+
+</form>
+
+<div class="text-center mt-3" style="background-color: gainsboro;">
+    <p>{{fg.value | json}}</p>
+    <p>{{fg.status | json}}</p>
+    <p>{{submitted}}</p>
+</div>
